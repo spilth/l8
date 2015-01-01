@@ -1,5 +1,6 @@
-require "l8/version"
+require 'l8/version'
+require 'l8/smartlight'
 
 module L8
-  # Your code goes here...
+
 end
