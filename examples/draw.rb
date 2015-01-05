@@ -1,7 +1,7 @@
 require 'l8'
 require 'io/console'
 
-@l8 = L8::Smartlight.new("/dev/tty.usbmodemfa1331")
+@l8 = L8::Smartlight.new("/dev/tty.usbmodem1411")
 
 @x = 0
 @y = 0

@@ -32,7 +32,7 @@ def get_status(url)
   json[0]['result']
 end
 
-@l8 = L8::Smartlight.new('/dev/tty.usbmodem1421')
+@l8 = L8::Smartlight.new('/dev/tty.usbmodem1411')
 
 @projects = %w(
   https://api.travis-ci.org/repos/pivotal/pivotal-life/builds
@@ -41,6 +41,7 @@ end
   https://api.travis-ci.org/repos/spilth/wedderdotcom/builds
   https://api.travis-ci.org/repos/spilth/ubyray/builds
   https://api.travis-ci.org/repos/spilth/littlebits-travis-webhook/builds
+  https://api.travis-ci.org/repos/sir-dunxalot/ember-flash-messages/builds
 )
 
 @l8.clear_matrix
