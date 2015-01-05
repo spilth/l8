@@ -37,7 +37,7 @@ Use `set_led` to set one of the LEDs to a color.  The arguments are:
 
 For example, to set the 5th LED in the 3rd row to orange:
 
-    l8.set_led(2, 4 ,15, 7, 0)
+    l8.set_led(2, 4, 15, 7, 0)
 
 ### Clearing the LEDs
 
