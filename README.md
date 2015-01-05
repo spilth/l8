@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/spilth/l8.svg?branch=master)](https://travis-ci.org/spilth/l8)
+
 # L8
 
 A gem for communicating with an [L8 SmartLight](http://l8smartlight.com) over USB.
