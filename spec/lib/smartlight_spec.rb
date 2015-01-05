@@ -6,7 +6,8 @@ module L8
     describe '#set_led' do
       it 'sets the color of the LED at given location' do
         allow(Serial).to receive(:new).with('serial_port') { serial_port }
-        allow(serial_port).to receive(:write).with("\xaa\x55\x07\x03\x00\x0F\x0F\x0F\x00\x0E")
+        allow(Util).to receive(:frame).with([Smartlight::CMD_L8_LED_SET, 3, 0, 15, 15, 15, 0]) { 'foo'}
+        allow(serial_port).to receive(:write).with('foo')
 
         l8 = L8::Smartlight.new('serial_port')
         l8.set_led(3, 0, 15, 15, 15)
