@@ -7,11 +7,13 @@ module L8
     CMD_L8_SUPERLED_SET = 0x4b
     CMD_L8_STATUSLEDS_ENABLE = 0x9e
     CMD_L8_SET_LOW_BRIGHTNESS = 0x9a
-    POWEROFF = 0x9d
-    MATRIX_SET = 0x44
+    CMD_L8_POWEROFF = 0x9d
+    CMD_L8_MATRIX_SET = 0x44
 
     def initialize(serial_port)
       @serial_port = Serial.new(serial_port)
+
+      Kernel.at_exit { @serial_port.close }
     end
 
     def clear_matrix
@@ -57,13 +59,13 @@ module L8
     end
 
     def power_off
-      @serial_port.write Util.frame([POWEROFF])
+      @serial_port.write Util.frame([CMD_L8_POWEROFF])
     end
 
     def set_matrix(pixels)
       data = Util.pixels_to_two_byte_array(pixels)
 
-      payload = [MATRIX_SET] + data
+      payload = [CMD_L8_MATRIX_SET] + data
 
       @serial_port.write Util.frame(payload)
     end
