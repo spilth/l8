@@ -29,5 +29,47 @@ module L8
         l8.set_led(3, 0, 15, 15, 15)
       end
     end
+
+    describe '#set_orientation' do
+      before(:each) do
+        allow(serial_port).to receive(:write).with('foo')
+      end
+
+      describe 'to up' do
+        it 'sends 0x80 with 1' do
+          expect(Util).to receive(:frame).with([Smartlight::CMD_L8_SET_ORIENTATION, 1]) { 'foo'}
+
+          l8 = L8::Smartlight.new('serial_port')
+          l8.set_orientation(:up)
+        end
+      end
+
+      describe 'to down' do
+        it 'sends 0x80 with 2' do
+          expect(Util).to receive(:frame).with([Smartlight::CMD_L8_SET_ORIENTATION, 2]) { 'foo'}
+
+          l8 = L8::Smartlight.new('serial_port')
+          l8.set_orientation(:down)
+        end
+      end
+
+      describe 'to right' do
+        it 'sends 0x80 with 5' do
+          expect(Util).to receive(:frame).with([Smartlight::CMD_L8_SET_ORIENTATION, 5]) { 'foo'}
+
+          l8 = L8::Smartlight.new('serial_port')
+          l8.set_orientation(:right)
+        end
+      end
+
+      describe 'to left' do
+        it 'sends 0x80 with 6' do
+          expect(Util).to receive(:frame).with([Smartlight::CMD_L8_SET_ORIENTATION, 6]) { 'foo'}
+
+          l8 = L8::Smartlight.new('serial_port')
+          l8.set_orientation(:left)
+        end
+      end
+    end
   end
 end

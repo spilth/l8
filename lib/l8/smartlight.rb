@@ -9,6 +9,7 @@ module L8
     CMD_L8_SET_LOW_BRIGHTNESS = 0x9a
     CMD_L8_POWEROFF = 0x9d
     CMD_L8_MATRIX_SET = 0x44
+    CMD_L8_SET_ORIENTATION = 0x80
 
     def initialize(serial_port)
       @serial_port = Serial.new(serial_port)
@@ -67,6 +68,16 @@ module L8
 
       payload = [CMD_L8_MATRIX_SET] + data
 
+      @serial_port.write Util.frame(payload)
+    end
+
+    def set_orientation(orientation)
+      value = 1 if orientation == :up
+      value = 2 if orientation == :down
+      value = 5 if orientation == :right
+      value = 6 if orientation == :left
+
+      payload = [CMD_L8_SET_ORIENTATION, value]
       @serial_port.write Util.frame(payload)
     end
   end
