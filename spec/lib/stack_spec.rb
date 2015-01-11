@@ -11,6 +11,29 @@ module L8
       end
     end
 
+    describe '#clear_matrix' do
+      describe 'when there are three L8s in the stack' do
+        let(:light1) { double(:l8one) }
+        let(:light2) { double(:l8two) }
+        let(:light3) { double(:l8three) }
+
+        before(:each) do
+          allow(L8::Smartlight).to receive(:new).with('/dev/foo') { light1 }
+          allow(L8::Smartlight).to receive(:new).with('/dev/bar') { light2 }
+          allow(L8::Smartlight).to receive(:new).with('/dev/baz') { light3 }
+        end
+
+        it 'calls clear_matrix on each light' do
+          expect(light1).to receive(:clear_matrix)
+          expect(light2).to receive(:clear_matrix)
+          expect(light3).to receive(:clear_matrix)
+
+          l8stack = L8::Stack.new('/dev/foo', '/dev/bar', '/dev/baz')
+          l8stack.clear_matrix
+        end
+      end
+    end
+
     describe '#set_led' do
       describe 'when there are three L8s in the stack' do
         let(:light1) { double(:l8one) }
