@@ -53,6 +53,10 @@ Use the `set_superled` method and pass 3 color values (0..15):
 
     l8.set_superled(0, 0, 15)
 
+## Resources
+
+- [SLCP Specification 1.0](http://www.l8smartlight.com/dev/slcp/1.0/#_Toc380755772)
+
 ## Contributing
 
 1. Fork it ( https://github.com/spilth/l8/fork )
