@@ -19,5 +19,11 @@ module L8
         l8.clear_matrix
       end
     end
+
+    def disable_status_leds
+      @l8s.each do |l8|
+        l8.disable_status_leds
+      end
+    end
   end
 end
