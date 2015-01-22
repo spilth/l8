@@ -10,6 +10,7 @@ module L8
     CMD_L8_POWEROFF = 0x9d
     CMD_L8_MATRIX_SET = 0x44
     CMD_L8_SET_ORIENTATION = 0x80
+    CMD_L8_DISP_CHAR = 0x7f
 
     def initialize(serial_port)
       @serial_port = Serial.new(serial_port)
@@ -29,6 +30,12 @@ module L8
 
     def set_superled(r,g,b)
       payload = [CMD_L8_SUPERLED_SET, b, g, r]
+
+      @serial_port.write Util.frame(payload)
+    end
+
+    def display_character(character)
+      payload = [CMD_L8_DISP_CHAR, character.bytes[0], 0]
 
       @serial_port.write Util.frame(payload)
     end

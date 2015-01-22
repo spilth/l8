@@ -30,6 +30,15 @@ module L8
       end
     end
 
+    describe '#display_character' do
+      it 'display a single character on the L8' do
+        expect(Util).to receive(:frame).with([Smartlight::CMD_L8_DISP_CHAR, 66, 0]) { 'foo' }
+
+        l8 = L8::Smartlight.new('serial_port')
+        l8.display_character('B')
+      end
+    end
+
     describe '#set_orientation' do
       before(:each) do
         allow(serial_port).to receive(:write).with('foo')
