@@ -55,7 +55,7 @@ Use the `set_superled` method and pass 3 color values (0..15):
 
 ## Resources
 
-- [SLCP Specification 1.0](http://www.l8smartlight.com/dev/slcp/1.0/#_Toc380755772)
+- [SLCP Specification 1.0](http://www.l8smartlight.com/dev/slcp/1.0/)
 
 ## Contributing
 
