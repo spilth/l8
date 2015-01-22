@@ -21,6 +21,15 @@ module L8
       end
     end
 
+    describe '#clear_matrix' do
+      it 'sends a command to clear the matrix' do
+        expect(Util).to receive(:frame).with([Smartlight::CMD_L8_MATRIX_OFF]) { 'foo'}
+
+        l8 = L8::Smartlight.new('serial_port')
+        l8.clear_matrix
+      end
+    end
+
     describe '#set_led' do
       it 'sets the color of the LED at given location' do
         expect(Util).to receive(:frame).with([Smartlight::CMD_L8_LED_SET, 3, 0, 15, 15, 15, 0]) { 'foo'}
@@ -30,12 +39,77 @@ module L8
       end
     end
 
+    describe '#set_superled' do
+      it 'sets the color of the superled' do
+        expect(Util).to receive(:frame).with([Smartlight::CMD_L8_SUPERLED_SET, 15, 14, 13]) { 'foo'}
+
+        l8 = L8::Smartlight.new('serial_port')
+        l8.set_superled(13, 14, 15)
+      end
+    end
+
     describe '#display_character' do
       it 'display a single character on the L8' do
         expect(Util).to receive(:frame).with([Smartlight::CMD_L8_DISP_CHAR, 66, 0]) { 'foo' }
 
         l8 = L8::Smartlight.new('serial_port')
         l8.display_character('B')
+      end
+    end
+
+    describe '#enable_status_leds' do
+      it 'enables the status LEDs' do
+        expect(Util).to receive(:frame).with([Smartlight::CMD_L8_STATUSLEDS_ENABLE, 1]) { 'foo'}
+
+        l8 = L8::Smartlight.new('serial_port')
+        l8.enable_status_leds
+      end
+    end
+
+    describe '#disable_status_leds' do
+      it 'disables the status LEDs' do
+        expect(Util).to receive(:frame).with([Smartlight::CMD_L8_STATUSLEDS_ENABLE, 0]) { 'foo'}
+
+        l8 = L8::Smartlight.new('serial_port')
+        l8.disable_status_leds
+      end
+    end
+
+    describe '#set_brightness' do
+      describe 'to low' do
+        it 'sets it to low' do
+          expect(Util).to receive(:frame).with([Smartlight::CMD_L8_SET_LOW_BRIGHTNESS, 2]) { 'foo'}
+
+          l8 = L8::Smartlight.new('serial_port')
+          l8.set_brightness(:low)
+        end
+      end
+
+      describe 'to medium' do
+        it 'sets it to medium' do
+          expect(Util).to receive(:frame).with([Smartlight::CMD_L8_SET_LOW_BRIGHTNESS, 1]) { 'foo'}
+
+          l8 = L8::Smartlight.new('serial_port')
+          l8.set_brightness(:medium)
+        end
+      end
+
+      describe 'to high' do
+        it 'sets it to high' do
+          expect(Util).to receive(:frame).with([Smartlight::CMD_L8_SET_LOW_BRIGHTNESS, 0]) { 'foo'}
+
+          l8 = L8::Smartlight.new('serial_port')
+          l8.set_brightness(:high)
+        end
+      end
+    end
+
+    describe '#power_off' do
+      it 'sends the poweroff message' do
+        expect(Util).to receive(:frame).with([Smartlight::CMD_L8_POWEROFF]) { 'foo'}
+
+        l8 = L8::Smartlight.new('serial_port')
+        l8.power_off
       end
     end
 
