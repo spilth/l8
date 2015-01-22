@@ -1,6 +1,6 @@
 require 'l8'
 
-row = L8::Row.new('/dev/tty.usbmodem1421', '/dev/tty.usbmodem1411')
+row = L8::Row.new('/dev/tty.usbmodem1a1211', '/dev/tty.usbmodem1a1221')
 row.clear_matrix
 row.disable_status_leds
 

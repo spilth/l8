@@ -7,12 +7,13 @@ SDL.init(SDL::INIT_JOYSTICK)
 @x = 0
 @y = 0
 
-@l8 = L8::Smartlight.new("/dev/tty.usbmodem1411")
+@l8 = L8::Row.new('/dev/tty.usbmodem1a1211', '/dev/tty.usbmodem1a1221')
 @l8.clear_matrix
 @l8.disable_status_leds
-@l8.set_brightness(:low)
-@l8.set_superled(0,0,0)
+# @l8.set_brightness(:low)
+# @l8.set_superled(0,0,0)
 @l8.set_led(@x,@y, 15, 15, 15)
+@l8.identify
 
 @colors = [
     [14,0,0],
@@ -22,6 +23,12 @@ SDL.init(SDL::INIT_JOYSTICK)
     [0,0,0]
 ]
 @color_index = 0
+
+while(true) do
+  SDL::Joystick.update_all
+  break if @joystick.button(9)
+  sleep 0.1
+end
 
 def read_joystick
   SDL::Joystick.update_all
@@ -35,7 +42,7 @@ def read_joystick
   color = @colors[@color_index]
   @l8.set_led(@y,@x, color[0], color[1], color[2])
 
-  @l8.set_superled(color[0], color[1], color[2]) if @joystick.button(8)
+  # @l8.set_superled(color[0], color[1], color[2]) if @joystick.button(8)
 
   @x = @x - 1 if @joystick.axis(3) < -16384
   @x = @x + 1 if @joystick.axis(3) > 16384
@@ -44,7 +51,7 @@ def read_joystick
 
   @x = 0 if @x < 0
   @y = 0 if @y < 0
-  @x = 7 if @x > 7
+  @x = 15 if @x > 15
   @y = 7 if @y > 7
 
   @l8.set_led(@y,@x, color[0] + 1, color[1] + 1, color[2] + 1)

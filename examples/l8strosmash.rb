@@ -1,9 +1,9 @@
 require 'l8'
 
-stack = L8::Stack.new('/dev/tty.usbmodem1411', '/dev/tty.usbmodem1421')
+stack = L8::Stack.new('/dev/tty.usbmodem1a1211', '/dev/tty.usbmodem1a1221')
 stack.clear_matrix
 
-sleep 0.2
+sleep 2
 
 # ground
 

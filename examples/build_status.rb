@@ -39,7 +39,7 @@ def get_statuses(url)
   JSON.parse(response)
 end
 
-@l8 = L8::Smartlight.new('/dev/tty.usbmodem1411')
+@l8 = L8::Smartlight.new('/dev/tty.usbmodem1a1211')
 
 @projects = %w(
   https://api.travis-ci.org/repos/spilth/l8/builds
