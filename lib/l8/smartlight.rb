@@ -72,7 +72,12 @@ module L8
     private
 
     def send_command payload
-      @serial_port.write Util.frame(payload)
+      frame = Frame.new(payload)
+      @serial_port.write frame
+      result = @serial_port.read(6)
+      while (result == '') do
+        result = @serial_port.read(6)
+      end
     end
   end
 end

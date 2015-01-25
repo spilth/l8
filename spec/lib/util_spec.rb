@@ -19,11 +19,5 @@ module L8
         expect(Util.pixels_to_two_byte_array([15,15,15, 15, 15, 15])).to eq([15, 255, 15, 255])
       end
     end
-
-    describe '.frame' do
-      it 'converts the payload into a checksummed frame' do
-        expect(Util.frame([0x43, 0x03, 0x00, 0x0f, 0x0f, 0x0f, 0x00])).to eq("\xaa\x55\x07\x43\x03\x00\x0f\x0f\x0f\x00\x0e".b)
-      end
-    end
   end
 end
